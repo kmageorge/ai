@@ -1,0 +1,20 @@
+[Unit]
+Description=Telegram AI Agent
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+# Change 'youruser' to your actual Linux username
+User=youruser
+WorkingDirectory=/home/youruser/ai-agent
+EnvironmentFile=/home/youruser/ai-agent/.env
+ExecStart=/home/youruser/ai-agent/venv/bin/python bot.py
+Restart=on-failure
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=ai-agent
+
+[Install]
+WantedBy=multi-user.target

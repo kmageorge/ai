@@ -1,0 +1,19 @@
+[Unit]
+Description=Telegram AI Agent
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=${USERNAME}
+WorkingDirectory=${INSTALL_DIR}
+EnvironmentFile=${INSTALL_DIR}/.env
+ExecStart=${INSTALL_DIR}/venv/bin/python bot.py
+Restart=on-failure
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=ai-agent
+
+[Install]
+WantedBy=multi-user.target
